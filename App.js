@@ -1,12 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from "react-redux";
+import HomeScreen from './screens/HomeScreen';
+import { store } from './store';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+// 1) Set up redux
 
 export default function App() {
+  const stack = createStackNavigator();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <NavigationContainer>
+        <SafeAreaProvider>
+          <HomeScreen />
+        </SafeAreaProvider>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
